@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Inputs(
-    val peso: String,
-    val altura: String
+    val bodyWeight: String,
+    val height: String
 ) : Parcelable
 
 

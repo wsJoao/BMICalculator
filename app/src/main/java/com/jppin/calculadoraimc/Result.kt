@@ -11,7 +11,7 @@ class Result : AppCompatActivity() {
 
     private lateinit var buttonReturn: Button
     private lateinit var textInfo: TextView
-    private lateinit var textDiagnostico: TextView
+    private lateinit var textDiagnostic: TextView
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class Result : AppCompatActivity() {
         }
         inputs?.let {
             getValues(inputs)
-            calculateIMC(inputs.peso.toDouble(), inputs.altura.toDouble())
+            calculateIMC(inputs.bodyWeight.toDouble(), inputs.height.toDouble())
         }
         buttonReturn.setOnClickListener {
             finish()
@@ -34,27 +34,31 @@ class Result : AppCompatActivity() {
     }
 
     private fun getValues(inputs: Inputs) {
-        val peso = inputs.peso
-        val altura = inputs.altura
-        val stringInfo = "Altura: $altura/ Peso: $peso"
+        val bodyWeight = inputs.bodyWeight
+        val height = inputs.height
+        val stringInfo =
+                    getString(R.string.height_text) + " " +
+                    height + " " +
+                    getString(R.string.weight_text) + " " +
+                    bodyWeight
         textInfo.text = stringInfo
     }
-    private fun calculateIMC(peso: Double, altura: Double): Double {
-        val imc = peso / (altura * altura)
-        val diagnostico = when {
+    private fun calculateIMC(bodyWeight: Double, height: Double): Double {
+        val imc = bodyWeight / (height * height)
+        val diagnosis = when {
             imc < 18.5 -> getString(R.string.diagBaixo)
             imc < 25 -> getString(R.string.diagNormal)
             imc < 30 -> getString(R.string.diagSobrepeso)
             else -> getString(R.string.diagObesidade)
         }
-        textDiagnostico.text = diagnostico
+        textDiagnostic.text = diagnosis
         return imc
         }
 
     private fun initComponents(){
         buttonReturn = findViewById(R.id.btnReturn)
         textInfo = findViewById(R.id.textInfo)
-        textDiagnostico = findViewById(R.id.textDiagnostico)
+        textDiagnostic = findViewById(R.id.textDiagnostico)
 
     }
 }

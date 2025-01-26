@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">CalculadoraIMC</string>
     <string name="btn_calc">Calcular</string>
     <string name="btn_return">Retornar</string>
     <string name="hintPeso">Peso (ex: 60.5)</string>
     <string name="hintAltura">Altura (ex: 1.70)</string>
     <string name="txt_Info">Info</string>
     <string name="txt_Diagnostico">Diagnóstico</string>
+
+    <string name="diagBaixo">Baixo</string>
+    <string name="diagNormal">Normal</string>
+    <string name="diagSobrepeso">Sobrepeso</string>
+    <string name="diagObesidade">Obesidade</string>
+
     <string name="error_peso_empty">Digite seu peso</string>
-    <string name="error_altura_empty">Digite sua altura</string>
+    <string name="error_altura_empty">Digite sua altura</string>"
+
+    <string name="height_text">Altura: </string>
+    <string name="weight_text"> / Peso: </string>
 </resources>

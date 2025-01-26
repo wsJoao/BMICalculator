@@ -8,6 +8,18 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="285dp"
+        android:layout_height="297dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
     <Button
         android:id="@+id/btn_Calculate"
         android:layout_width="0dp"
@@ -51,18 +63,6 @@
             tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="285dp"
-        android:layout_height="297dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputAlturaLayout"
         android:layout_width="0dp"
@@ -84,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hintAltura"
+            android:inputType="number|numberDecimal"
             android:textColor="@color/white"
             tools:ignore="HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>

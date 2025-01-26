@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var buttonCalculate: Button
 
-    private lateinit var textInputAltura : TextInputLayout
-    private lateinit var textInputPeso: TextInputLayout
+    private lateinit var textInputHeight : TextInputLayout
+    private lateinit var textInputWeight: TextInputLayout
 
-    private lateinit var editAltura: TextInputEditText
-    private lateinit var editPeso: TextInputEditText
+    private lateinit var editHeight: TextInputEditText
+    private lateinit var editWeight: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         initComponents()
 
         buttonCalculate.setOnClickListener {
-            val pesoInput = editPeso.text.toString()
-            val alturaInput = editAltura.text.toString()
+            val bodyWeightInput = editWeight.text.toString()
+            val heightInput = editHeight.text.toString()
 
-            val inputs = Inputs(pesoInput, alturaInput)
-            val validateFields = validateFields(pesoInput, alturaInput)
+            val inputs = Inputs(bodyWeightInput, heightInput)
+            val validateFields = validateFields(bodyWeightInput, heightInput)
 
             val openResult = Intent(this, Result::class.java)
             if (validateFields){
@@ -40,21 +40,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-        private fun validateFields(pesoInput: String, alturaInput: String): Boolean {
-            textInputPeso.error = null
-            textInputAltura.error = null
+        private fun validateFields(bodyWeightInput: String, heightInput: String): Boolean {
+            textInputWeight.error = null
+            textInputHeight.error = null
 
-            if (alturaInput.isEmpty() && pesoInput.isEmpty()) {
-                textInputAltura.error = getString(R.string.error_altura_empty)
-                textInputPeso.error = getString(R.string.error_peso_empty)
+            if (heightInput.isEmpty() && bodyWeightInput.isEmpty()) {
+                textInputHeight.error = getString(R.string.error_altura_empty)
+                textInputWeight.error = getString(R.string.error_peso_empty)
                 return false
             }
-            if (alturaInput.isEmpty()) {
-                textInputAltura.error = getString(R.string.error_altura_empty)
+            if (heightInput.isEmpty()) {
+                textInputHeight.error = getString(R.string.error_altura_empty)
                 return false
             }
-            if (pesoInput.isEmpty()) {
-                textInputPeso.error = getString(R.string.error_peso_empty)
+            if (bodyWeightInput.isEmpty()) {
+                textInputWeight.error = getString(R.string.error_peso_empty)
                 return false
             }
 
@@ -65,16 +65,16 @@ class MainActivity : AppCompatActivity() {
         private fun initComponents() {
             buttonCalculate = findViewById(R.id.btn_Calculate)
 
-            textInputPeso = findViewById(R.id.textInputPesoLayout)
-            textInputAltura = findViewById(R.id.textInputAlturaLayout)
+            textInputWeight = findViewById(R.id.textInputPesoLayout)
+            textInputHeight = findViewById(R.id.textInputAlturaLayout)
 
-            editPeso = findViewById(R.id.TextInputEditPeso)
-            editAltura = findViewById(R.id.TextInputEditAltura)
+            editWeight = findViewById(R.id.TextInputEditPeso)
+            editHeight = findViewById(R.id.TextInputEditAltura)
 
         }
 
         private fun clearForm() {
-            editPeso.text = null
-            editAltura.text = null
+            editWeight.text = null
+            editHeight.text = null
         }
     }
