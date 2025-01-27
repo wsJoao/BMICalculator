@@ -1,23 +1,20 @@
 package com.jppin.calculadoraimc
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.jppin.calculadoraimc.data.Inputs
+import com.jppin.calculadoraimc.databinding.ActivityResultBinding
 
 class Result : AppCompatActivity() {
 
-    private lateinit var buttonReturn: Button
-    private lateinit var textInfo: TextView
-    private lateinit var textDiagnostic: TextView
+    private lateinit var binding: ActivityResultBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
-        initComponents()
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         val inputs = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("input_data", Inputs::class.java)
         } else {
@@ -28,7 +25,7 @@ class Result : AppCompatActivity() {
             getValues(inputs)
             calculateIMC(inputs.bodyWeight.toDouble(), inputs.height.toDouble())
         }
-        buttonReturn.setOnClickListener {
+        binding.btnReturn.setOnClickListener {
             finish()
         }
     }
@@ -41,7 +38,7 @@ class Result : AppCompatActivity() {
                     height + " " +
                     getString(R.string.weight_text) + " " +
                     bodyWeight
-        textInfo.text = stringInfo
+        binding.textInfo.text = stringInfo
     }
     private fun calculateIMC(bodyWeight: Double, height: Double): Double {
         val imc = bodyWeight / (height * height)
@@ -51,14 +48,7 @@ class Result : AppCompatActivity() {
             imc < 30 -> getString(R.string.diagSobrepeso)
             else -> getString(R.string.diagObesidade)
         }
-        textDiagnostic.text = diagnosis
+        binding.textDiagnostico.text = diagnosis
         return imc
         }
-
-    private fun initComponents(){
-        buttonReturn = findViewById(R.id.btnReturn)
-        textInfo = findViewById(R.id.textInfo)
-        textDiagnostic = findViewById(R.id.textDiagnostico)
-
-    }
 }

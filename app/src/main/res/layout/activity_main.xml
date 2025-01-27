@@ -88,4 +88,5 @@
             android:textColor="@color/white"
             tools:ignore="HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
