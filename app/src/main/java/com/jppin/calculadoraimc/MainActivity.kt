@@ -1,53 +1,48 @@
 package com.jppin.calculadoraimc
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jppin.calculadoraimc.data.Inputs
+import com.jppin.calculadoraimc.data.MainViewModel
+import com.jppin.calculadoraimc.data.NavigationHelper.navigateToResult
 import com.jppin.calculadoraimc.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel = MainViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        setObservers()
+        setListeners()
+    }
+    private fun setObservers() {
+        viewModel.inputData.observe(this) { inputData ->
+            binding.etWeight.setText(inputData.weight)
+            binding.etHeight.setText(inputData.height)
 
-       binding.btnCalculate.setOnClickListener {
-           val weightInput =  binding.TextInputEditPeso.text.toString()
-           val heightInput = binding.TextInputEditAltura.text.toString()
+            binding.tilWeight.error = inputData.errorWeight
+            binding.tilHeight.error = inputData.errorHeight
 
-            if (validateFields(weightInput, heightInput)) {
-                val inputs = Inputs(weightInput, heightInput)
-                val openResult = Intent(this, Result::class.java).apply {
-                    putExtra("input_data", inputs)
-                }
-                clearForm()
-                startActivity(openResult)
+        }
+    }
+    private fun setListeners(){
+        binding.btnCalculate.setOnClickListener {
+            val weight = binding.etWeight.text.toString()
+            val height = binding.etHeight.text.toString()
+
+            viewModel.updateInputs(weight, height, this)
+
+            if(viewModel.inputData.value?.isValid == true){
+                val inputs = Inputs(weight, height)
+                navigateToResult(this, inputs)
+                viewModel.clearInputs()
             }
         }
     }
-        private fun validateFields(bodyWeightInput: String, heightInput: String): Boolean {
-            binding.textInputPesoLayout.error = null
-            binding.textInputAlturaLayout.error = null
+}
 
-            if (heightInput.isEmpty()) {
-                binding.textInputAlturaLayout.error = getString(R.string.error_altura_empty)
-                return false
-            }
-            if (bodyWeightInput.isEmpty()) {
-                binding.textInputPesoLayout.error = getString(R.string.error_peso_empty)
-                return false
-            }
-
-            return true
-        }
-
-        private fun clearForm() {
-            binding.TextInputEditAltura.text = null
-            binding.TextInputEditPeso.text = null
-        }
-    }

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Result">
 
     <Button
@@ -15,7 +20,7 @@
         android:text="@string/btn_return"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDiagnostico"
+        app:layout_constraintTop_toBottomOf="@+id/textDiagnosis"
         tools:ignore="TextContrastCheck" />
 
     <ImageView
@@ -46,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgImc" />
 
     <TextView
-        android:id="@+id/textDiagnostico"
+        android:id="@+id/textDiagnosis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -60,3 +65,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
