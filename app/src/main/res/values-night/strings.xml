@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CalculadoraIMC</string>
+    <string name="app_name">BMI</string>
     <string name="btn_calc">Calcular</string>
     <string name="btn_return">Retornar</string>
     <string name="hintPeso">Peso (ex: 60.5)</string>
@@ -18,4 +18,7 @@
 
     <string name="height_text">Altura: </string>
     <string name="weight_text"> / Peso: </string>
+
+    <string name="toast_done">Dados válidos</string>
+
 </resources>

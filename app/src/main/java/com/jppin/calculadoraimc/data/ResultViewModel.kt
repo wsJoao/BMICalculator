@@ -24,6 +24,7 @@ class ResultViewModel : ViewModel() {
         resultData.value = Result(imcFormatted, diagnosis)
     }
 }
+
 data class Result(
     val imc: String,
     val diagnosis: String

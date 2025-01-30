@@ -1,6 +1,7 @@
 package com.jppin.calculadoraimc
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jppin.calculadoraimc.data.Inputs
 import com.jppin.calculadoraimc.data.MainViewModel
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
             if(viewModel.inputData.value?.isValid == true){
                 val inputs = Inputs(weight, height)
+                Toast.makeText(this, R.string.toast_done, Toast.LENGTH_SHORT).show()
                 navigateToResult(this, inputs)
                 viewModel.clearInputs()
             }
