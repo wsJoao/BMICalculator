@@ -2,6 +2,7 @@ package com.jppin.calculadoraimc
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jppin.calculadoraimc.data.IntentProcessor
 import com.jppin.calculadoraimc.data.ResultViewModel
@@ -29,6 +30,7 @@ class Result : AppCompatActivity() {
     }
     private fun setListeners() {
         binding.btnReturn.setOnClickListener {
+            Toast.makeText(this, R.string.toast_return, Toast.LENGTH_SHORT).show()
             finish()
         }
     }

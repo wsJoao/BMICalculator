@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BMI</string>
     <string name="btn_calc">Calcular</string>
     <string name="btn_return">Retornar</string>
@@ -19,5 +19,6 @@
     <string name="weight_text"> / Peso: </string>
 
     <string name="toast_done">Dados válidos</string>
+    <string name="toast_return" tools:ignore="TypographyEllipsis">Retornando...</string>
 
 </resources>
