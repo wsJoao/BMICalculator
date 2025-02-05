@@ -2,8 +2,8 @@
     <string name="app_name">BMI</string>
     <string name="btn_calc">Calcular</string>
     <string name="btn_return">Retornar</string>
-    <string name="hintPeso">Peso (ex: 60.5)</string>
-    <string name="hintAltura">Altura (ex: 1.70)</string>
+    <string name="hintPeso">Peso</string>
+    <string name="hintAltura">Altura</string>
     <string name="txt_Info">Info</string>
     <string name="txt_Diagnostico">Diagnóstico</string>
 
@@ -20,5 +20,14 @@
 
     <string name="toast_done">Dados válidos</string>
     <string name="toast_return" tools:ignore="TypographyEllipsis">Retornando...</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inches">Polegadas</string>
+    <string name="feet">Pés</string>
+    <string name="pounds">Libras</string>
+    <string name="imperial_system">Imperial System</string>
+    <string name="err_empty_feet">Insira altura em pés</string>
+    <string name="err_empty_inches">Insira altura em polegadas</string>
+    <string name="err_empty_pounds">Insira peso em libras</string>
 
 </resources>

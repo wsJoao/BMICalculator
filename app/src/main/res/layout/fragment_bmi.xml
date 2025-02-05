@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.fragments.BmiFragment">
+
+<Button
+    android:id="@+id/btn_Calculate"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="32dp"
+    android:text="@string/btn_calc"
+    android:textColor="@color/white"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/til_pounds"
+    tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/til_pounds"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:outlineProvider="background"
+    android:padding="8dp"
+    android:textColorHint="@color/primaria_variant"
+    app:boxStrokeColor="@android:color/white"
+    app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
+    app:hintTextColor="@android:color/white"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/til_feet">
+
+<com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/etPounds"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/pounds"
+    android:inputType="number|numberDecimal"
+    android:textColor="@color/white"
+    android:saveEnabled="true"
+    tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+</com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_inches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:outlineProvider="background"
+        android:padding="8dp"
+        android:textColorHint="@color/primaria_variant"
+        app:boxStrokeColor="@android:color/white"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:hintTextColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@id/til_feet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/til_pounds"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:ignore="VisualLintBounds">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etInches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/inches"
+        android:inputType="number|numberDecimal"
+        android:textColor="@color/white"
+        android:saveEnabled="true"
+        tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_feet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:padding="8dp"
+        android:textColorHint="@color/primaria_variant"
+        app:boxStrokeColor="@android:color/white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/til_inches"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFeet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/feet"
+            android:inputType="number|numberDecimal"
+            android:textColor="@color/white"
+            android:saveEnabled="true"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+    </com.google.android.material.textfield.TextInputLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>

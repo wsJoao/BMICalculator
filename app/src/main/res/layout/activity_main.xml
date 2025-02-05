@@ -1,98 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="SpeakableTextPresentCheck">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/background"
-    tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="285dp"
-        android:layout_height="297dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
-
-    <Button
-        android:id="@+id/btn_Calculate"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_calc"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_weight"
-        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+        android:background="@color/background"
+        tools:context=".ui.main.MainActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:outlineProvider="background"
-        android:padding="8dp"
-        android:textColorHint="@color/primaria_variant"
-        app:boxStrokeColor="@android:color/white"
-        app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:hintTextColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_height">
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="285dp"
+            android:layout_height="297dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_weight"
-            android:layout_width="match_parent"
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/hintPeso"
-            android:inputType="number|numberDecimal"
-            android:textColor="@color/white"
-            tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"
+            android:switchTextAppearance="@style/TextAppearance.AppCompat.Display4"
+            android:text="@string/imperial_system"
+            android:textColor="#004D40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLogo"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_height"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:padding="8dp"
-        android:textColorHint="@color/primaria_variant"
-        app:boxStrokeColor="@android:color/white"
-        app:hintTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_height"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hintAltura"
-            android:inputType="number|numberDecimal"
-            android:textColor="@color/white"
-            tools:ignore="HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="220dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/switch1"
+            tools:layout="@layout/fragment_bmi"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
