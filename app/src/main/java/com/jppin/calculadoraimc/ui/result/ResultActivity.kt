@@ -24,12 +24,14 @@ class ResultActivity : AppCompatActivity() {
         setListeners()
         processInputs(intent)
     }
+
     private fun setObservers() {
         viewModel.resultsData.observe(this) { resultData ->
             binding.textDiagnosis.text = resultData.diagnosis
             binding.textInfo.text = resultData.imc
         }
     }
+
     private fun setListeners() {
         binding.btnReturn.setOnClickListener {
             Toast.makeText(this, R.string.toast_return, Toast.LENGTH_SHORT).show()
@@ -39,10 +41,10 @@ class ResultActivity : AppCompatActivity() {
     private fun processInputs(intent: Intent) {
         val inputs = IntentProcessor.extractInputs(intent)
         val diagnosis = Diagnosis(
-            underweight = getString(R.string.diagBaixo),
+            underweight = getString(R.string.diagUndw),
             normal = getString(R.string.diagNormal),
-            overweight = getString(R.string.diagSobrepeso),
-            obesity = getString(R.string.diagObesidade)
+            overweight = getString(R.string.diagOvw),
+            obesity = getString(R.string.diagObese)
         )
         inputs?.let {
             viewModel.imcData(inputs.weight.toDouble(), inputs.height.toDouble(), diagnosis)

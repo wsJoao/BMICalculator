@@ -2,7 +2,7 @@ package com.jppin.calculadoraimc.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.jppin.calculadoraimc.R
+import androidx.fragment.app.Fragment
 import com.jppin.calculadoraimc.databinding.ActivityMainBinding
 import com.jppin.calculadoraimc.ui.fragments.BmiFragment
 import com.jppin.calculadoraimc.ui.fragments.ImcFragment
@@ -16,21 +16,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        changeFragment(ImcFragment())
-        binding.switch1.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                changeFragment(BmiFragment())
-            } else {
-                changeFragment(ImcFragment())
-            }
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(binding.fragmentContainer.id, BmiFragment(), "BMI")
+                .commit()
+        }
+        binding.switch1.setOnClickListener {
+            showFragment("BMI", BmiFragment())
+        }
+        binding.switch2.setOnClickListener {
+            showFragment("IMC", ImcFragment())
         }
     }
-    private fun changeFragment(fragment: androidx.fragment.app.Fragment) {
-        if (supportFragmentManager.findFragmentById(R.id.fragmentContainer) != fragment) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
-                .addToBackStack(null)
+    private fun showFragment(tag: String, newFragment: Fragment) {
+        val currentFragment = supportFragmentManager.findFragmentById(binding.fragmentContainer.id)
+
+        if (currentFragment?.tag != tag) {
+            supportFragmentManager.beginTransaction()
+                .replace(binding.fragmentContainer.id, newFragment, tag)
                 .commit()
         }
     }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.jppin.calculadoraimc.data.Inputs
 
 class BmiViewModel : ViewModel() {
-    val bmiData  = MutableLiveData<BmiInputs>()
+    private val bmiData  = MutableLiveData<BmiInputs>()
     val inputData = MutableLiveData<Inputs>()
 
     fun updateInput(feet: String, inches: String, pounds: String) {
@@ -17,9 +17,6 @@ class BmiViewModel : ViewModel() {
         val height = (feet.toDouble() * 0.3048) + (inches.toDouble() * 0.0254)
         val weight = pounds.toDouble() * 0.453592
         inputData.value = Inputs(weight.toString(), height.toString())
-    }
-    fun clearData() {
-        bmiData .value = BmiInputs()
     }
 }
 

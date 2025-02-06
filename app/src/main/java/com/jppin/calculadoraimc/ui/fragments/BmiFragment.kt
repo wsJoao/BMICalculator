@@ -1,7 +1,6 @@
 package com.jppin.calculadoraimc.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,8 @@ import com.jppin.calculadoraimc.databinding.FragmentBmiBinding
 
 class BmiFragment : Fragment() {
 
-    private lateinit var binding: FragmentBmiBinding
     private lateinit var viewModel: BmiViewModel
+    private lateinit var binding: FragmentBmiBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,18 +23,8 @@ class BmiFragment : Fragment() {
     ): View {
         binding = FragmentBmiBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[BmiViewModel::class.java]
-        setObservers()
         setListeners()
-        Log.d("BmiFragment", "onCreateView called")
         return binding.root
-    }
-    private fun setObservers(){
-         viewModel.bmiData.observe(viewLifecycleOwner) { inputs ->
-             Log.d("BmiFragment", "bmiData updated: $inputs")
-                 binding.etPounds.setText(inputs.pounds)
-                 binding.etFeet.setText(inputs.feet)
-                 binding.etInches.setText(inputs.inches)
-         }
     }
     private fun setListeners() {
         binding.btnCalculate.setOnClickListener {
@@ -58,8 +47,13 @@ class BmiFragment : Fragment() {
                 val inputs = Inputs(viewModel.inputData.value?.weight.toString(), viewModel.inputData.value?.height.toString())
                 navigateToResult(this,inputs)
                 Toast.makeText(requireContext(), R.string.toast_done, Toast.LENGTH_SHORT).show()
-                viewModel.clearData()
+                clearData()
             }
         }
+    }
+    private fun clearData() {
+        binding.etFeet.text = null
+        binding.etInches.text = null
+        binding.etPounds.text = null
     }
 }

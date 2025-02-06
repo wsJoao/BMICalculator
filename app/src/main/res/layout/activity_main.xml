@@ -25,7 +25,7 @@
             app:srcCompat="@drawable/logo"
             tools:ignore="ContentDescription,ImageContrastCheck" />
 
-        <Switch
+        <Button
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,21 +33,36 @@
             android:minHeight="48dp"
             android:switchTextAppearance="@style/TextAppearance.AppCompat.Display4"
             android:text="@string/imperial_system"
-            android:textColor="#004D40"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/switch2"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLogo"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Button
+            android:id="@+id/switch2"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"
+            android:switchTextAppearance="@style/TextAppearance.AppCompat.Display4"
+            android:text="@string/decimal_system"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/switch1"
             app:layout_constraintTop_toBottomOf="@id/imageLogo"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="300dp"
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/switch1"
-            tools:layout="@layout/fragment_bmi"/>
+            tools:layout="@layout/fragment_bmi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

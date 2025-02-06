@@ -14,44 +14,44 @@ import com.jppin.calculadoraimc.databinding.FragmentImcBinding
 
 class ImcFragment : Fragment() {
 
-    private lateinit var binding: FragmentImcBinding
     private lateinit var viewModel: ImcViewModel
+    private lateinit var binding: FragmentImcBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreate(savedInstanceState)
         binding = FragmentImcBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[ImcViewModel::class.java]
-        setObservers()
         setListeners()
         return binding.root
     }
-
     private fun setListeners() {
-        binding.btnCalculate.setOnClickListener{
+        binding.btnCalculate.setOnClickListener {
             val weight = binding.etWeight.text.toString()
             val height = binding.etHeight.text.toString()
 
-            val weightError = if (weight.isBlank()) getString(R.string.error_peso_empty) else null
-            val heightError = if (height.isBlank()) getString(R.string.error_altura_empty) else null
+            val weightError = if (weight.isBlank()) getString(R.string.err_empty_weight) else null
+            val heightError = if (height.isBlank()) getString(R.string.err_height_empty) else null
 
             binding.tilWeight.error = weightError
             binding.tilHeight.error = heightError
 
             if (weightError == null && heightError == null) {
                 viewModel.updateInput(weight, height)
-                val inputs = Inputs(viewModel.inputData.value?.weight.toString(), viewModel.inputData.value?.height.toString())
-                navigateToResult(this,inputs)
-                Toast.makeText(requireContext(), R.string.toast_done, Toast.LENGTH_SHORT).show()
-                viewModel.clearData()
+                val inputs = Inputs(
+                    viewModel.inputData.value?.weight.toString(),
+                    viewModel.inputData.value?.height.toString()
+                )
+                clearData()
+                navigateToResult(this, inputs)
+                Toast.makeText(requireActivity(), R.string.toast_done, Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-    private fun setObservers() {
-        viewModel.inputData.observe(viewLifecycleOwner) { inputs ->
-            binding.etWeight.setText(inputs.weight)
-            binding.etHeight.setText(inputs.height)
-        }
+    private fun clearData(){
+            binding.etWeight.text = null
+            binding.etHeight.text = null
     }
 }
