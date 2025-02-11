@@ -11,7 +11,9 @@ import com.jppin.calculadoraimc.R
 import com.jppin.calculadoraimc.data.Inputs
 import com.jppin.calculadoraimc.data.NavigationHelper.navigateToResult
 import com.jppin.calculadoraimc.databinding.FragmentBmiBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BmiFragment : Fragment() {
 
     private lateinit var viewModel: BmiViewModel
@@ -21,36 +23,52 @@ class BmiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreate(savedInstanceState)
         binding = FragmentBmiBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[BmiViewModel::class.java]
+        setObserver()
         setListeners()
         return binding.root
     }
-    private fun setListeners() {
-        binding.btnCalculate.setOnClickListener {
-            val feet = binding.etFeet.text.toString()
-            val inches = binding.etInches.text.toString()
-            val pounds = binding.etPounds.text.toString()
 
-            val feetError = if (feet.isBlank()) getString(R.string.err_empty_feet) else null
-            val inchesError = if (inches.isBlank()) getString(R.string.err_empty_inches) else null
-            val poundsError = if (pounds.isBlank()) getString(R.string.err_empty_pounds) else null
-
+    private fun setObserver() {
+        viewModel.errors.observe(viewLifecycleOwner) { (feetError, inchesError, poundsError) ->
             binding.tilFeet.error = feetError
             binding.tilInches.error = inchesError
             binding.tilPounds.error = poundsError
-
-            if (feetError == null && inchesError == null && poundsError == null) {
-                viewModel.updateInput(feet, inches, pounds)
-                viewModel.bmiConversion(feet, inches, pounds)
-
-                val inputs = Inputs(viewModel.inputData.value?.weight.toString(), viewModel.inputData.value?.height.toString())
-                navigateToResult(this,inputs)
-                Toast.makeText(requireContext(), R.string.toast_done, Toast.LENGTH_SHORT).show()
-                clearData()
-            }
         }
     }
+
+    private fun setListeners() {
+            binding.btnCalculate.setOnClickListener {
+                val (feet, inches, pounds) = Triple(
+                    binding.etFeet.text.toString(),
+                    binding.etInches.text.toString(),
+                    binding.etPounds.text.toString())
+
+                viewModel.checkFields(feet, inches, pounds)
+
+                if (viewModel.errors.value?.let { it.first == null && it.second == null && it.third == null } == true) {
+                    viewModel.updateInput(feet, inches, pounds)
+                    viewModel.bmiConversion(feet, inches, pounds)
+
+                    val inputs = Inputs(
+                        viewModel.inputData.value?.weight.toString(),
+                        viewModel.inputData.value?.height.toString()
+                    )
+                    navigateToResult(this, inputs)
+                    showToast()
+                    clearData()
+                } else {
+                    Toast.makeText(requireContext(), "Falha", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    private fun showToast() {
+        Toast.makeText(requireContext(), R.string.toast_done, Toast.LENGTH_SHORT).show()
+    }
+
     private fun clearData() {
         binding.etFeet.text = null
         binding.etInches.text = null

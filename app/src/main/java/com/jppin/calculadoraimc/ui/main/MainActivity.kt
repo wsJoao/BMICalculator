@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import com.jppin.calculadoraimc.databinding.ActivityMainBinding
 import com.jppin.calculadoraimc.ui.fragments.BmiFragment
 import com.jppin.calculadoraimc.ui.fragments.ImcFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -21,10 +23,10 @@ class MainActivity : AppCompatActivity() {
                 .replace(binding.fragmentContainer.id, BmiFragment(), "BMI")
                 .commit()
         }
-        binding.switch1.setOnClickListener {
+        binding.btnImperial.setOnClickListener {
             showFragment("BMI", BmiFragment())
         }
-        binding.switch2.setOnClickListener {
+        binding.btnMetric.setOnClickListener {
             showFragment("IMC", ImcFragment())
         }
     }

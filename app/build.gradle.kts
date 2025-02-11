@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.plugin.parcelize") version "2.1.20-Beta1"
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -53,4 +55,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation("com.google.dagger:hilt-android:2.55")
+    kapt("com.google.dagger:hilt-android-compiler:2.55")
+}
+
+kapt {
+    correctErrorTypes = true
 }
