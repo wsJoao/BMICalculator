@@ -13,7 +13,7 @@
     <string name="diagOvw">Overweight</string>
     <string name="diagObese">Obesity</string>
 
-    <string name="err_empty_weight">Enter your weight</string>
+    <string name="err_weight_empty">Enter your weight</string>
     <string name="err_height_empty">Enter your height</string>
 
     <string name="height_text">Height: </string>
