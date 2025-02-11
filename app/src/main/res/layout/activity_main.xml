@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@android:style/Widget.Holo.ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="SpeakableTextPresentCheck">
@@ -12,6 +13,50 @@
         android:layout_height="wrap_content"
         android:background="@color/background"
         tools:context=".ui.main.MainActivity">
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            app:checkedButton="@id/btnImperial"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageLogo"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnImperial"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:minHeight="48dp"
+                android:text="@string/imperial_system"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/button_background"
+                app:strokeColor="@color/primaria"
+                tools:ignore="TextContrastCheck" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMetric"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:paddingVertical="8dp"
+                android:text="@string/decimal_system"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/button_background"
+                app:strokeColor="@color/primaria"
+                tools:ignore="TextContrastCheck" />
+
+
+
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <ImageView
             android:id="@+id/imageLogo"
@@ -25,35 +70,6 @@
             app:srcCompat="@drawable/logo"
             tools:ignore="ContentDescription,ImageContrastCheck" />
 
-        <Button
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"
-            android:switchTextAppearance="@style/TextAppearance.AppCompat.Display4"
-            android:text="@string/imperial_system"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@id/switch2"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageLogo"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-        <Button
-            android:id="@+id/switch2"
-            android:layout_width="155dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"
-            android:switchTextAppearance="@style/TextAppearance.AppCompat.Display4"
-            android:text="@string/decimal_system"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/switch1"
-            app:layout_constraintTop_toBottomOf="@id/imageLogo"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
@@ -61,8 +77,9 @@
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/switch1"
+            app:layout_constraintTop_toBottomOf="@id/toggleGroup"
             tools:layout="@layout/fragment_bmi" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
